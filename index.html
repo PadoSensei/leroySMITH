@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <title>leroySMITH</title>
+  </head>
+  <body>
+    <div class="keys">
+      <div data-key="81" class="key">
+        <kbd>Q</kbd>
+        <span class="sound">Summi</span>
+      </div>
+      <div data-key="87" class="key">
+        <kbd>W</kbd>
+        <span class="sound">Wait</span>
+      </div>
+      <div data-key="69" class="key">
+        <kbd>E</kbd>
+        <span class="sound">Narc</span>
+      </div>
+      <div data-key="82" class="key">
+        <kbd>R</kbd>
+        <span class="sound">Major</span>
+      </div>
+      <div data-key="84" class="key">
+        <kbd>T</kbd>
+        <span class="sound">Jumpleads</span>
+      </div>
+      <div data-key="89" class="key">
+        <kbd>Y</kbd>
+        <span class="sound">Bursht</span>
+      </div>
+      <div data-key="85" class="key">
+        <kbd>U</kbd>
+        <span class="sound">Bag</span>
+      </div>
+      <div data-key="73" class="key">
+        <kbd>I</kbd>
+        <span class="sound">Sticky</span>
+      </div>
+      <div data-key="79" class="key">
+        <kbd>O</kbd>
+        <span class="sound">Disagree</span>
+      </div>
+
+
+    <div class="keys">
+      <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">clap</span>
+      </div>
+      <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">hihat</span>
+      </div>
+      <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">kick</span>
+      </div>
+      <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">openhat</span>
+      </div>
+      <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">boom</span>
+      </div>
+      <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound">ride</span>
+      </div>
+      <div data-key="74" class="key">
+        <kbd>J</kbd>
+        <span class="sound">snare</span>
+      </div>
+      <div data-key="75" class="key">
+        <kbd>K</kbd>
+        <span class="sound">tom</span>
+      </div>
+      <div data-key="76" class="key">
+        <kbd>L</kbd>
+        <span class="sound">tink</span>
+      </div>
+    </div>
+
+    <audio data-key="81" src="./Sounds/sumi.m4a"></audio>
+    <audio data-key="87" src="./Sounds/wait.m4a"></audio>
+    <audio data-key="69" src="./Sounds/na.m4a"></audio>
+    <audio data-key="82" src="./Sounds/major.m4a"></audio>
+    <audio data-key="84" src="./Sounds/jump.m4a"></audio>
+    <audio data-key="89" src="./Sounds/bursht.m4a"></audio>
+    <audio data-key="85" src="./Sounds/bag.m4a"></audio>
+    <audio data-key="73" src="./Sounds/sticky.m4a"></audio>
+    <audio data-key="79" src="./Sounds/disagree.m4a"></audio>
+
+    <audio data-key="65" src="./Sounds/clap.wav"></audio>
+    <audio data-key="83" src="./Sounds/hihat.wav"></audio>
+    <audio data-key="68" src="./Sounds/kick.wav"></audio>
+    <audio data-key="70" src="./Sounds/openhat.wav"></audio>
+    <audio data-key="71" src="./Sounds/boom.wav"></audio>
+    <audio data-key="72" src="./Sounds/ride.wav"></audio>
+    <audio data-key="74" src="./Sounds/snare.wav"></audio>
+    <audio data-key="75" src="./Sounds/tom.wav"></audio>
+    <audio data-key="76" src="./Sounds/tink.wav"></audio>
+  </body>
+  <script>
+    window.addEventListener("keydown", function (e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if (!audio) return; // stop here if no audio
+      audio.currentTime = 0; // plays from start
+      audio.play();
+      key.classList.add("playing");
+    });
+
+    function removeTransition(e) {
+      if (e.propertyName !== "transform") return;
+      this.classList.remove("playing");
+    }
+
+    const keys = document.querySelectorAll(".key");
+    keys.forEach((key) =>
+      key.addEventListener("transitionend", removeTransition)
+    );
+  </script>
+</html>
